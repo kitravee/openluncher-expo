@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "scheme": "openluncher",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "openluncher",
+    "slug": "openluncher"
+  }
+}
