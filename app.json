@@ -5,6 +5,7 @@
       "bundler": "metro"
     },
     "name": "openluncher",
-    "slug": "openluncher"
+    "slug": "openluncher",
+    "userInterfaceStyle": "automatic"
   }
 }
