@@ -3,7 +3,7 @@ import { View, Text, Pressable } from 'react-native'
 
 import tw from '@/libs/tailwind'
 
-export default function Home() {
+export default function List() {
   const router = useRouter()
   return (
     <View style={tw`flex-1 p-4`}>
@@ -14,17 +14,17 @@ export default function Home() {
         </Text>
         <Pressable
           onPress={() => {
-            router.push('/home')
+            router.push('/list/1')
           }}
         >
           <Text style={tw`font-NotoSansThai_400 text-blue-600 underline`}>
-            Go To Home
+            List1
           </Text>
         </Pressable>
-        <Link href="/modal" asChild>
+        <Link href="/list/1" asChild>
           <Pressable>
             <Text style={tw`font-NotoSansThai_400 text-blue-600 underline`}>
-              Open Model
+              List2
             </Text>
           </Pressable>
         </Link>

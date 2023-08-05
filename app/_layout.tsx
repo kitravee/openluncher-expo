@@ -22,13 +22,15 @@ import {
   NotoSerifThai_800ExtraBold,
   NotoSerifThai_900Black,
 } from '@expo-google-fonts/noto-serif-thai'
-import { SplashScreen, Stack } from 'expo-router'
+import { SplashScreen, Stack, useRouter } from 'expo-router'
+import { Button } from 'react-native'
 import { useDeviceContext } from 'twrnc'
 
 import tw from '@/libs/tailwind'
 
 export default function Layout() {
   useDeviceContext(tw)
+  const router = useRouter()
 
   const [fontsNotoSansLoaded] = useNotoSans({
     NotoSansThai_100Thin,
@@ -59,5 +61,42 @@ export default function Layout() {
   }
 
   // Render the children routes now that all the assets are loaded.
-  return <Stack />
+  return (
+    <Stack>
+      <Stack.Screen
+        name="index"
+        options={{
+          headerTitle: 'Welcome',
+          headerRight: () => (
+            <Button
+              title="Open"
+              onPress={() => {
+                router.push('modal')
+              }}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="modal"
+        options={{
+          presentation: 'modal',
+          headerRight: () => (
+            <Button
+              title="Close"
+              onPress={() => {
+                router.push('/')
+              }}
+            />
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="(tabs)"
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack>
+  )
 }
