@@ -1,52 +1,60 @@
 import {
-  useFonts as useFontsIBMPlexSansThai,
-  IBMPlexSansThai_100Thin,
-  IBMPlexSansThai_200ExtraLight,
-  IBMPlexSansThai_300Light,
-  IBMPlexSansThai_400Regular,
-  IBMPlexSansThai_500Medium,
-  IBMPlexSansThai_600SemiBold,
-  IBMPlexSansThai_700Bold,
-} from '@expo-google-fonts/ibm-plex-sans-thai'
+  useFonts as useNotoSans,
+  NotoSansThai_100Thin,
+  NotoSansThai_200ExtraLight,
+  NotoSansThai_300Light,
+  NotoSansThai_400Regular,
+  NotoSansThai_500Medium,
+  NotoSansThai_600SemiBold,
+  NotoSansThai_700Bold,
+  NotoSansThai_800ExtraBold,
+  NotoSansThai_900Black,
+} from '@expo-google-fonts/noto-sans-thai'
 import {
-  useFonts as useFontsIBMPlexSansThaiLooped,
-  IBMPlexSansThaiLooped_100Thin,
-  IBMPlexSansThaiLooped_200ExtraLight,
-  IBMPlexSansThaiLooped_300Light,
-  IBMPlexSansThaiLooped_400Regular,
-  IBMPlexSansThaiLooped_500Medium,
-  IBMPlexSansThaiLooped_600SemiBold,
-  IBMPlexSansThaiLooped_700Bold,
-} from '@expo-google-fonts/ibm-plex-sans-thai-looped'
+  useFonts as useNotoSerif,
+  NotoSerifThai_100Thin,
+  NotoSerifThai_200ExtraLight,
+  NotoSerifThai_300Light,
+  NotoSerifThai_400Regular,
+  NotoSerifThai_500Medium,
+  NotoSerifThai_600SemiBold,
+  NotoSerifThai_700Bold,
+  NotoSerifThai_800ExtraBold,
+  NotoSerifThai_900Black,
+} from '@expo-google-fonts/noto-serif-thai'
 import { SplashScreen, Stack } from 'expo-router'
-import { NativeWindStyleSheet } from 'nativewind'
+import { useDeviceContext } from 'twrnc'
 
-// For Web platform
-NativeWindStyleSheet.setOutput({
-  default: 'native',
-})
+import tw from '@/libs/tailwind'
+
 export default function Layout() {
-  const [fontsIBMPlexSansThaiLoaded] = useFontsIBMPlexSansThai({
-    IBMPlexSansThai_100Thin,
-    IBMPlexSansThai_200ExtraLight,
-    IBMPlexSansThai_300Light,
-    IBMPlexSansThai_400Regular,
-    IBMPlexSansThai_500Medium,
-    IBMPlexSansThai_600SemiBold,
-    IBMPlexSansThai_700Bold,
+  useDeviceContext(tw)
+
+  const [fontsNotoSansLoaded] = useNotoSans({
+    NotoSansThai_100Thin,
+    NotoSansThai_200ExtraLight,
+    NotoSansThai_300Light,
+    NotoSansThai_400Regular,
+    NotoSansThai_500Medium,
+    NotoSansThai_600SemiBold,
+    NotoSansThai_700Bold,
+    NotoSansThai_800ExtraBold,
+    NotoSansThai_900Black,
   })
 
-  const [fontsIBMPlexSansThaiLooped] = useFontsIBMPlexSansThaiLooped({
-    IBMPlexSansThaiLooped_100Thin,
-    IBMPlexSansThaiLooped_200ExtraLight,
-    IBMPlexSansThaiLooped_300Light,
-    IBMPlexSansThaiLooped_400Regular,
-    IBMPlexSansThaiLooped_500Medium,
-    IBMPlexSansThaiLooped_600SemiBold,
-    IBMPlexSansThaiLooped_700Bold,
+  const [fontsNotoSerifLoaded] = useNotoSerif({
+    NotoSerifThai_100Thin,
+    NotoSerifThai_200ExtraLight,
+    NotoSerifThai_300Light,
+    NotoSerifThai_400Regular,
+    NotoSerifThai_500Medium,
+    NotoSerifThai_600SemiBold,
+    NotoSerifThai_700Bold,
+    NotoSerifThai_800ExtraBold,
+    NotoSerifThai_900Black,
   })
 
-  if (!fontsIBMPlexSansThaiLoaded && !fontsIBMPlexSansThaiLooped) {
+  if (!fontsNotoSansLoaded || !fontsNotoSerifLoaded) {
     return <SplashScreen />
   }
 
