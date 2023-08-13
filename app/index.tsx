@@ -10,7 +10,7 @@ export default function Home() {
       <View style={tw`flex-1 justify-center`}>
         <Text style={tw`font-NotoSansThai_400 text-4xl pb-2`}>Index Pager</Text>
         <Text style={tw`font-NotoSerifThai_400 text-xl`}>
-          This is the first page of openluncher application
+          This is the first page of openluncher
         </Text>
         <Pressable
           onPress={() => {

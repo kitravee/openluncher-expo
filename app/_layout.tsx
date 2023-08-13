@@ -22,15 +22,24 @@ import {
   NotoSerifThai_800ExtraBold,
   NotoSerifThai_900Black,
 } from '@expo-google-fonts/noto-serif-thai'
-import { SplashScreen, Stack, useRouter } from 'expo-router'
-import { Button } from 'react-native'
+import { Stack, useRouter } from 'expo-router'
+import * as SplashScreen from 'expo-splash-screen'
+import { useEffect, useState } from 'react'
+import { Button, Text, View } from 'react-native'
 import { useDeviceContext } from 'twrnc'
 
 import tw from '@/libs/tailwind'
 
+// Keep the splash screen visible while we fetch resources
+// SplashScreen.preventAutoHideAsync()
+SplashScreen.preventAutoHideAsync().catch(() => {
+  /* reloading the app might trigger some race conditions, ignore them */
+})
 export default function Layout() {
   useDeviceContext(tw)
   const router = useRouter()
+
+  const [isAppReady, setAppReady] = useState(false)
 
   const [fontsNotoSansLoaded] = useNotoSans({
     NotoSansThai_100Thin,
@@ -56,8 +65,33 @@ export default function Layout() {
     NotoSerifThai_900Black,
   })
 
-  if (!fontsNotoSansLoaded || !fontsNotoSerifLoaded) {
-    return <SplashScreen />
+  const fontsLoaded = fontsNotoSansLoaded && fontsNotoSerifLoaded
+
+  useEffect(() => {
+    async function prepare() {
+      try {
+        await SplashScreen.hideAsync()
+        // Artificially delay for two seconds to simulate a slow loading
+        // experience. Please remove this if you copy and paste the code!
+        await new Promise((resolve) => setTimeout(resolve, 2000))
+      } catch (e) {
+        console.warn(e)
+      } finally {
+        // Tell the application to render
+        setAppReady(true)
+      }
+    }
+    if (fontsLoaded) {
+      prepare()
+    }
+  }, [fontsLoaded])
+
+  if (!isAppReady) {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>SplashScreen Demo! 👋</Text>
+      </View>
+    )
   }
 
   // Render the children routes now that all the assets are loaded.

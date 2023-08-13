@@ -1,14 +1,48 @@
 {
   "expo": {
     "scheme": "openluncher",
-    "web": {
-      "bundler": "metro"
-    },
     "name": "openluncher",
     "slug": "openluncher",
     "userInterfaceStyle": "automatic",
     "plugins": [
       "expo-router"
-    ]
+    ],
+    "experiments": {
+      "tsconfigPaths": true,
+      "typedRoutes": true
+    },
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.openluncher.xpro"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.openluncher.xpro"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro"
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "7d888e90-6edf-4541-a5d3-57d11f399119"
+      }
+    }
   }
 }

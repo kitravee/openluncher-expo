@@ -7,12 +7,7 @@ module.exports = function (api) {
     plugins: [
       require.resolve('expo-router/babel'),
       [
-        'module-resolver',
-        {
-          alias: {
-            "@": './',
-          },
-        },
+        'module-resolver'
       ],
     ],
   }
