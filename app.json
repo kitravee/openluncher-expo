@@ -6,6 +6,9 @@
     },
     "name": "openluncher",
     "slug": "openluncher",
-    "userInterfaceStyle": "automatic"
+    "userInterfaceStyle": "automatic",
+    "plugins": [
+      "expo-router"
+    ]
   }
 }
